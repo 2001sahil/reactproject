@@ -1,0 +1,32 @@
+{
+    "status": "ok",
+    "totalResults": 5947,
+    "articles": [
+        {
+            "source": {
+                "id": "bbc-news",
+                "name": "BBC News"
+            },
+            "author": "https://www.facebook.com/bbcnews",
+            "title": "NHS pay dispute: Health Secretary Steve Barclay hints at revised offer to unions",
+            "description": "Writing in the Sunday Telegraph, Steve Barclay says he remains \"ready to engage\" with unions.",
+            "url": "https://www.bbc.co.uk/news/uk-politics-64201200",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/7780/production/_128229503_819f2c593a05fc43eb7f5e3e1cb074c527672408.jpg",
+            "publishedAt": "2023-01-08T05:22:32Z",
+            "content": "Health Secretary Steve Barclay has suggested striking health workers could receive a revised pay offer - if they agree to \"efficiencies\" in the NHS.\r\nWriting in the Sunday Telegraph, Mr Barclay said … [+2448 chars]"
+        },
+        {
+            "source": {
+                "id": "bbc-news",
+                "name": "BBC News"
+            },
+            "author": null,
+            "title": "2023/01/08 05:00 GMT",
+            "description": "The latest five minute news bulletin from BBC World Service.",
+            "url": "https://www.bbc.co.uk/programmes/w172ykqh462ncfc",
+            "urlToImage": "https://ichef.bbci.co.uk/images/ic/1200x675/p060dh18.jpg",
+            "publishedAt": "2023-01-08T05:06:00Z",
+            "content": "The latest five minute news bulletin from BBC World Service."
+        }
+        ]
+}

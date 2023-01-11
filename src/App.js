@@ -9,6 +9,7 @@ export default class App extends Component {
     return (
       <div>
         <Navbar/>
+        {/* hii */}
       <div className="container mr-5 ">
         <News/>
       </div></div>

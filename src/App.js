@@ -15,6 +15,7 @@ export default class App extends Component {
         <Route  path="/News" element={<News key="News" category="News" />}/>
 
           <Route  path="/" element={<News key="general" category="general" />} />
+          <Route  path="/reactproject" element={<News key="general" category="general" />} />
           <Route  path="/Entertainment" element={<News key="Entertainment" category="Entertainment" />} />
           <Route  path="/Business" element={<News  key="Business" category="Business" />} />
           <Route  path="/science" element={<News  key="science" category="science" />} />

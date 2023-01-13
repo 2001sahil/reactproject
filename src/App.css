@@ -2,10 +2,15 @@
   text-align: center;
 }
 .load{
-  height: 85vh;
+  /* height: 85vh; */
   display: flex;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
+  /* width: ; */
+}
+.load img{
+  width: 5vw;
 }
 .App-logo {
   height: 40vmin;

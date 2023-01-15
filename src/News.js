@@ -1,84 +1,125 @@
-import React, { Component } from 'react'
+import React, { useEffect,useState} from 'react'
 import Card from './components/Card';
 // import Navbar from './components/Navbar';
 import Load from './components/Load';
 import InfiniteScroll from 'react-infinite-scroll-component';
-export default class News extends Component {
+const News =(props)=> {
+  
+      const [articles,setarticles]=useState([])
+      const [Image,setImage]=useState("")
+      const [page,setpage]=useState(1)
+      const [loding,setloding]=useState(0)
+      const [disable,setdisable]=useState(false)
+      const [info,setinfo]=useState("WELCOME TO MY FIRST NEWS WEB")
+      const [total,settotal]=useState(0)
+  
 
-
-  constructor() {
-    super();
-    this.state = { articles: [], Image: "", page: 1 ,loding: 0, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" };
-  }
-
-
-  check = () => {
-
-    if (this.state.page === 1) {
+  // constructor() {
+  //   super();
+    
+  //   this.state = { articles: [], Image: "", page: 1 ,loding: 0, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" };
+  
+    
+  // }
+  const check = () => {
+    if (page==1) {
       return true
     }
     return false
   }
-  prev = async () => {
+  const prev = async () => {
 
-    this.setState({ loding: 0, info: "Loading please wait" })
-    await this.setState({ page: this.state.page - 1 });
-    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${this.state.page}&category=${this.props.category}`);
+    // this.setState({ loding: 0, info: "Loading please wait" })
+    setloding(0)
+    setinfo("Loading please wait")
+    await setpage(page-1)
+    // await this.setState({ page: this.state.page - 1 });
+
+
+    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${page}&category=${props.category}`);
     let data = await api.json();
-    this.setState({ articles: data.articles, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    // this.setState({ articles: data.articles, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    setarticles(data.articles)
+    setloding(1)
+    setdisable(false)
+    setinfo("WELCOME TO MY FIRST NEWS WEB")
   }
-  next = async () => {
-    this.setState({ loding: 0, info: "Loading please wait" })
-    await this.setState({ page: this.state.page + 1 })
-    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${this.state.page}&category=${this.props.category}`);
+  const next = async () => {
+    // this.setState({ loding: 0, info: "Loading please wait" })
+    setloding(0)
+    setinfo("Loading please wait")
+
+    // await this.setState({ page: this.state.page + 1 })
+    await setpage(page+1)
+    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${page}&category=${props.category}`);
     let data = await api.json();
-    this.setState({ articles: data.articles, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    // this.setState({ articles: data.articles, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    setarticles(data.articles)
+    setloding(1)
+    setdisable(false)
+    setinfo("WELCOME TO MY FIRST NEWS WEB")
   }
-  fetchMoreData=async ()=>{
-    this.setState({page:this.page+1});
-    await this.setState({ page: this.state.page + 1 })
-    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${this.state.page}&category=${this.props.category}`);
+  const fetchMoreData=async ()=>{
+    
+    // this.props.Setstate=0
+    // this.setState({page:this.page+1});
+    // await this.setState({ page: this.state.page + 1 })
+    setpage(page+1)
+
+    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${page}&category=${props.category}`);
     let data = await api.json();
-    this.setState({articles:this.state.articles.concat(data.articles)})
+    // this.setState({articles:this.state.articles.concat(data.articles)})
+    setarticles(articles.concat(data.articles))
 
   }
-  checknext = () => {
-    if (5 * this.state.page > this.state.total) {
+  const checknext = () => {
+    if (5 *page > total) {
       return true
     } return false
   }
-  async componentDidMount() {
-    this.setState({ loding: 0, disable: true, info: "Loading please wait" })
-    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${this.page}&category=${this.props.category}`);
+  const fun=async ()=>{
+    props.click(0)
+    setloding(0)
+    setdisable(true)
+    setinfo("Loading please wait")
+    let api = await fetch(`https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&apiKey=3a84fc9a12d946a8955b46729d4903ce&pageSize=5&page=${page}&category=${props.category}`);
     let data = await api.json();
-    await this.setState({ articles: data.articles, total: data.totalResults, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    props.click(100)
+    // await this.setState({ articles: data.articles, total: data.totalResults, loding: 1, disable: false, info: "WELCOME TO MY FIRST NEWS WEB" })
+    setarticles(data.articles)
+    settotal(data.totalResults)
+    setloding(1)
+    setdisable(false)
+    setinfo("WELCOME TO MY FIRST NEWS WEB")
   }
-  a = () => {
-    if (this.state.loding === 0) {
-      if (this.state.disable === true) {
+  useEffect( () => {
+      fun();
+  },[])
+  const a = () => {
+    if (loding === 0) {
+      if (disable === true) {
         return <Load />;
       }
     }
   }
-  st=1;
-  render() {
+  let st=1;
+  
     return (
       <div>
-        <div className='info d-flex align-items-center justify-content-center mt-4'>{this.state.info}</div>
+        <div className='info d-flex align-items-center justify-content-center mt-4'>{info}</div>
         <div >
           <InfiniteScroll 
-            dataLength={this.state.articles.length}
-            next={this.fetchMoreData}
-            // style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
-            // inverse={true} //
-            hasMore={!((5 * this.state.page) > this.state.total)}
+            dataLength={articles.length}
+            next={fetchMoreData}
+            
+            hasMore={!((5 * page) > total)}
             loader={<h4><Load /></h4>}
             scrollableTarget="scrollableDiv"
           >
-            <div className="ALLNEWS row container">
-              {this.state.articles.map((element) => {
-                if (!this.state.disable) {
-                  return (<Card key={this.st++} title={element.title} image={element.urlToImage} description={element.description} url={element.url} />)
+            <div className="ALLNEWS row container m-auto d-flex  justify-content-center">
+              {articles.map((element) => {
+                if (!disable) {
+                  return (<Card key={st++} title={element.title} image={element.urlToImage} description={element.description} url={element.url} />)
                 } return null
               })}
             </div>
@@ -90,5 +131,6 @@ export default class News extends Component {
         </div> */}
       </div>
     )
-  }
+  
 }
+export default News

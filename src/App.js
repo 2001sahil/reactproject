@@ -1,34 +1,43 @@
 import './App.css';
-import React, { Component } from 'react'
+import React,{useState} from 'react'
 import News from './News';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-export default class App extends Component {
+import LoadingBar from 'react-top-loading-bar'
+export default function App() {
+  // constructor(){
+  //   super();
+  //   this.state=({progress:100})    
+  // }
+  const [progress,setprogress]=useState(100)
 
-  render() {
+  const fun=(pro)=>{return setprogress(pro)}
+  
+  
+  
     return (
       <BrowserRouter>
-      <div>
       <Navbar/>
-      <div className="container mr-5 ">
-      <Routes>
-        <Route  path="/News" element={<News key="News" category="News" />}/>
+      (<LoadingBar
+        color='#f11946'
+        progress={progress}
+        // onLoaderFinished={() => this.setState({progress:100})}
+        />)
+      <div>
 
-          <Route  path="/" element={<News key="general" category="general" />} />
-          <Route  path="/reactproject" element={<News key="general" category="general" />} />
-          <Route  path="/Entertainment" element={<News key="Entertainment" category="Entertainment" />} />
-          <Route  path="/Business" element={<News  key="Business" category="Business" />} />
-          <Route  path="/science" element={<News  key="science" category="science" />} />
-        {/* </Route> */}
+      <Routes>
+        
+        <Route  path="/News" element={<News key="News" click={fun} category="News" />} />
+
+          <Route  path="/" element={<News   key="general" click={fun} category="general" />} />
+          <Route  path="/reactproject" element={<News key="general" click={fun}  category="general" />} />
+          <Route  path="/Entertainment" element={<News key="Entertainment" click={fun}  category="Entertainment" />} />
+          <Route  path="/Business" element={<News  key="Business" click={fun}  category="Business" />} />
+          <Route  path="/science" element={<News  key="science" click={fun}  category="science" />} />
       </Routes>
-      </div></div>
+      </div>
     </BrowserRouter>
-      // <div>
-      //   <Navbar/>
-      // <div className="container mr-5 ">
-      //   <News category="business" />
-      // </div></div>
     )
-  }
+  
 }
 

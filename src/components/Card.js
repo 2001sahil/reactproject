@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-export default class Card extends Component {
-    render() {
-        let {image,text,title,url}=this.props;
+import React  from 'react'
+const  Card =(props)=> {
+ 
+        let {image,text,title,url}=props;
         return (
       <div className='ml-3 mr-3 mt-5 mb-5'>
-        <div className="card ml-20" style={{width: "18rem"}}>
+        <div className="card " style={{width: "18rem"}}>
         <img className="card-img-top" src={image} alt="Card cap"/>
         <div className="card-body ">
             <h5 className="card-title">{title}</h5>
@@ -14,5 +14,6 @@ export default class Card extends Component {
     </div> 
       </div>
     )
-  }
+  
 }
+export default Card

@@ -114,7 +114,7 @@ const News =(props)=> {
         <div className='info d-flex align-items-center justify-content-center mt-4'>{info}</div>
         <div >
           <InfiniteScroll 
-            dataLength={articles.length}
+            // dataLength={articles.length}
             next={fetchMoreData}
             
             hasMore={!((5 * page) > total)}

@@ -12,6 +12,7 @@ const News =(props)=> {
       const [disable,setdisable]=useState(false)
       const [info,setinfo]=useState("WELCOME TO MY FIRST NEWS WEB")
       const [total,settotal]=useState(0)
+      const [Title,settitle]=useState("React-Home")
   
 
   // constructor() {
@@ -21,6 +22,8 @@ const News =(props)=> {
   
     
   // }
+  // document.Tit(title)
+  document.title=(Title)
   const check = () => {
     if (page==1) {
       return true
@@ -43,6 +46,7 @@ const News =(props)=> {
     setloding(1)
     setdisable(false)
     setinfo("WELCOME TO MY FIRST NEWS WEB")
+    
   }
   const next = async () => {
     // this.setState({ loding: 0, info: "Loading please wait" })
@@ -94,6 +98,7 @@ const News =(props)=> {
   }
   useEffect( () => {
       fun();
+      settitle(`React-${props.category}`)
   },[])
   const a = () => {
     if (loding === 0) {
@@ -120,7 +125,7 @@ const News =(props)=> {
               {articles.map((element) => {
                 if (!disable) {
                   return (<Card key={st++} title={element.title} image={element.urlToImage} description={element.description} url={element.url} />)
-                } return null
+                } return 8
               })}
             </div>
           </InfiniteScroll>
